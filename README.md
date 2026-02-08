@@ -104,14 +104,6 @@ The project includes the following analytical components:
 - Value vs Risk segmentation
 - CLV and average tenure comparison
 
-### Advanced SQL Techniques Applied
-
-- Common Table Expressions (CTEs)
-- Conditional segmentation logic
-- Churn rate calculations
-- Revenue risk percentage
-- Ranking functions
-
 ---
 
 ## Key Business Insights
