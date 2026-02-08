@@ -1,0 +1,5 @@
+tenure_group,total_customers,churned_customers,churn_rate_percentage,avg_monthly_charges,total_revenue,revenue_rank
+0-1 Year,2186,1037,47.44,56.1,601651.9,4
+1-2 Years,1024,294,28.71,61.36,1153287.7,3
+2-4 Years,1594,325,20.39,65.93,3810380.35,2
+4+ Years,2239,213,9.51,73.95,10490848.75,1

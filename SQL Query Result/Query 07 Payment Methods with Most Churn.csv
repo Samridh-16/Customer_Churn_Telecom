@@ -1,0 +1,5 @@
+PaymentMethod,customer_count,churned_customers,avg_monthly_charges,churn_rate_percent
+Electronic check,2365,1071,76.26,45.29
+Mailed check,1612,308,43.92,19.11
+Bank transfer (automatic),1544,258,67.19,16.71
+Credit card (automatic),1522,232,66.51,15.24

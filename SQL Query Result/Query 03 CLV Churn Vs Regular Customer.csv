@@ -1,0 +1,3 @@
+Churn,customer_count,avg_clv,avg_tenure_months,avg_monthly_charges
+false,5174,2549.91,37.6,61.27
+true,1869,1531.8,18.0,74.44

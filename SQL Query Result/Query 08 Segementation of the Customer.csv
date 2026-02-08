@@ -1,0 +1,10 @@
+value_segment,risk_segment,customer_count,avg_clv,churn_rate
+High Value,High Risk,856,424.29,69.04
+Medium Value,High Risk,629,228.2,45.47
+High Value,Medium Risk,1308,3056.46,40.06
+Low Value,High Risk,509,88.4,28.88
+Medium Value,Medium Risk,561,1475.5,18.72
+High Value,Low Risk,1419,5634.12,10.71
+Low Value,Medium Risk,491,416.85,6.31
+Medium Value,Low Risk,535,3035.04,4.11
+Low Value,Low Risk,735,1164.07,1.5
