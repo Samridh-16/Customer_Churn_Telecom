@@ -1,0 +1,11 @@
+QUERY 7
+-- Business Problem: Identify payment methods most strongly associated with churn.
+SELECT
+    PaymentMethod,
+    COUNT(*) as customer_count,
+    SUM(CASE WHEN Churn THEN 1 ELSE 0 END) as churned_customers,
+    ROUND(AVG(MonthlyCharges), 2) as avg_monthly_charges,
+    ROUND(SUM(CASE WHEN Churn THEN 1.0 ELSE 0 END) / COUNT(*) * 100, 2) as churn_rate_percent
+FROM `elaborate-art-471212-d9.Telco_Customer_Churn.Cleaned_Dataset`
+GROUP BY PaymentMethod
+ORDER BY churn_rate_percent DESC;

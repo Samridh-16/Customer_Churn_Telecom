@@ -1,0 +1,19 @@
+QUERY 4
+-- Business Problem: Identify high-risk customers early based on contract, tenure, and payment method.
+SELECT
+    customerID,
+    tenure,
+    MonthlyCharges,
+    TotalCharges,
+    Contract,
+    PaymentMethod,
+    InternetService,
+    CASE
+        WHEN Contract = 'Month-to-month' AND tenure <= 12 AND PaymentMethod = 'Electronic check' THEN 'High Risk'
+        WHEN Contract = 'Month-to-month' AND tenure <= 24 THEN 'Medium Risk'
+        ELSE 'Low Risk'
+    END as risk_category
+FROM `elaborate-art-471212-d9.Telco_Customer_Churn.Cleaned_Dataset`
+WHERE Churn = FALSE
+AND (Contract = 'Month-to-month' OR tenure <= 12)
+ORDER BY tenure ASC, MonthlyCharges DESC;

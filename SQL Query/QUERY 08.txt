@@ -1,0 +1,30 @@
+QUERY 8
+-- Business Problem: Segment customers by value and risk level for targeted retention strategies.
+SELECT
+    CASE
+        WHEN MonthlyCharges <= 35 THEN 'Low Value'
+        WHEN MonthlyCharges <= 70 THEN 'Medium Value'
+        ELSE 'High Value'
+    END as value_segment,
+    CASE
+        WHEN Contract = 'Month-to-month' AND tenure <= 12 THEN 'High Risk'
+        WHEN Contract = 'Month-to-month' OR tenure <= 24 THEN 'Medium Risk'
+        ELSE 'Low Risk'
+    END as risk_segment,
+    COUNT(*) as customer_count,
+    ROUND(AVG(TotalCharges), 2) as avg_clv,
+    ROUND(SUM(CASE WHEN Churn THEN 1.0 ELSE 0 END) / COUNT(*) * 100, 2) as churn_rate
+FROM `elaborate-art-471212-d9.Telco_Customer_Churn.Cleaned_Dataset`
+WHERE TotalCharges IS NOT NULL
+GROUP BY
+    CASE
+        WHEN MonthlyCharges <= 35 THEN 'Low Value'
+        WHEN MonthlyCharges <= 70 THEN 'Medium Value'
+        ELSE 'High Value'
+    END,
+    CASE
+        WHEN Contract = 'Month-to-month' AND tenure <= 12 THEN 'High Risk'
+        WHEN Contract = 'Month-to-month' OR tenure <= 24 THEN 'Medium Risk'
+        ELSE 'Low Risk'
+    END
+ORDER BY churn_rate DESC;

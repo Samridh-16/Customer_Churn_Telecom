@@ -1,0 +1,27 @@
+QUERY 10
+-- Business Problem: Build a tenure-based dashboard for churn, revenue, and profitability analysis.
+WITH CustomerSegments AS (
+    SELECT
+        customerID,
+        CASE WHEN Churn THEN 1 ELSE 0 END AS Churn_bin,
+        MonthlyCharges,
+        TotalCharges,
+        CASE
+            WHEN tenure <= 12 THEN '0-1 Year'
+            WHEN tenure <= 24 THEN '1-2 Years'
+            WHEN tenure <= 48 THEN '2-4 Years'
+            ELSE '4+ Years'
+        END AS tenure_group
+    FROM `elaborate-art-471212-d9.Telco_Customer_Churn.Cleaned_Dataset`
+)
+SELECT
+    tenure_group,
+    COUNT(*) AS total_customers,
+    SUM(Churn_bin) AS churned_customers,
+    ROUND(100.0 * SUM(Churn_bin) / COUNT(*), 2) AS churn_rate_percentage,
+    ROUND(AVG(MonthlyCharges), 2) AS avg_monthly_charges,
+    ROUND(SUM(TotalCharges), 2) AS total_revenue,
+    RANK() OVER (ORDER BY SUM(TotalCharges) DESC) AS revenue_rank
+FROM CustomerSegments
+GROUP BY tenure_group
+ORDER BY churn_rate_percentage DESC;

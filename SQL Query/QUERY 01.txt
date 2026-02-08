@@ -1,0 +1,6 @@
+-- Business Problem: Understand the overall churn percentage to gauge retention performance.
+SELECT
+    COUNT(*) as total_customers,
+    SUM(CASE WHEN Churn THEN 1 ELSE 0 END) as churned_customers,
+    ROUND(SUM(CASE WHEN Churn THEN 1.0 ELSE 0 END) / COUNT(*) * 100, 2) as churn_rate_percent
+FROM `elaborate-art-471212-d9.Telco_Customer_Churn.Cleaned_Dataset`;

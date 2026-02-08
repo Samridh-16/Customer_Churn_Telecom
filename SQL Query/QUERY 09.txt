@@ -1,0 +1,18 @@
+QUERY 9
+-- Business Problem: Break down revenue, tenure, and charges for churned vs retained customers.
+WITH RevenueBreakdown AS (
+    SELECT
+        Churn,
+        SUM(TotalCharges) AS total_revenue,
+        AVG(MonthlyCharges) AS avg_monthly_charges,
+        AVG(tenure) AS avg_tenure
+    FROM `elaborate-art-471212-d9.Telco_Customer_Churn.Cleaned_Dataset`
+    GROUP BY Churn
+)
+SELECT
+    Churn,
+    ROUND(total_revenue, 2) AS total_revenue,
+    ROUND(avg_monthly_charges, 2) AS avg_monthly_charges,
+    ROUND(avg_tenure, 2) AS avg_tenure
+FROM RevenueBreakdown
+ORDER BY total_revenue DESC;

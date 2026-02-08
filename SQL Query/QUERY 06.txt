@@ -1,0 +1,9 @@
+QUERY 6 
+-- Business Problem: Estimate monthly revenue lost vs retained due to churn.
+SELECT
+    ROUND(SUM(CASE WHEN Churn THEN MonthlyCharges ELSE 0 END), 2) as monthly_revenue_lost,
+    ROUND(SUM(CASE WHEN NOT Churn THEN MonthlyCharges ELSE 0 END), 2) as monthly_revenue_retained,
+    ROUND(SUM(MonthlyCharges), 2) as total_monthly_revenue,
+    ROUND(SUM(CASE WHEN Churn THEN MonthlyCharges ELSE 0 END) / SUM(MonthlyCharges) * 100, 2) as revenue_at_risk_percent
+FROM `elaborate-art-471212-d9.Telco_Customer_Churn.Cleaned_Dataset`;
+

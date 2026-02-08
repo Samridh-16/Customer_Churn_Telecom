@@ -1,0 +1,11 @@
+QUERY 3
+-- Business Problem: Analyze customer lifetime value (CLV), tenure, and charges for churned vs retained customers.
+SELECT
+    Churn,
+    COUNT(*) as customer_count,
+    ROUND(AVG(TotalCharges), 2) as avg_clv,
+    ROUND(AVG(tenure), 1) as avg_tenure_months,
+    ROUND(AVG(MonthlyCharges), 2) as avg_monthly_charges
+FROM `elaborate-art-471212-d9.Telco_Customer_Churn.Cleaned_Dataset`
+WHERE TotalCharges IS NOT NULL
+GROUP BY Churn;
